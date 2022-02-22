@@ -10,9 +10,9 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
-        "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "infyomlabs/laravel-generator": "8.0.x-dev",
+        "laravel/ui": "^3.4",
+        "ramsey/uuid": "^4.2",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {

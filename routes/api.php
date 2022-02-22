@@ -1,6 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\V1\BrandController;
+use App\Http\Controllers\API\V1\UserController;
+use App\Http\Controllers\API\V1\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
+Route::group(['prefix' => '/v1'], function () {
+
+    Route::post('user/login', [AuthController::class, 'login']);
+
+
+    Route::get('user/show', [UserController::class, 'show']);
+    Route::post('user/create', [UserController::class, 'store']);
+    Route::put('user/edit', [UserController::class, 'update']);
+    Route::delete('user/delete', [UserController::class, 'destroy']);
+
+    // Route::apiResources('brand', BrandController::class);
 });
