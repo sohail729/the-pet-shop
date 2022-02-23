@@ -47,15 +47,15 @@ class User extends Authenticatable implements JWTSubject
         return 'uuid';
     }
 
-    // /**
-    //  * Mutator for setting the encryption on the user password.
-    //  *
-    //  * @param $password
-    // */
-    // public function setPasswordAttribute($value)
-    // {
-    //    $this->attributes['password'] = Hash::make($value);
-    // }
+    /**
+     * Mutator for setting the encryption on the user password.
+     *
+     * @param $password
+    */
+    public function setPasswordAttribute($value)
+    {
+       $this->attributes['password'] = Hash::make($value);
+    }
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.

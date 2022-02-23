@@ -11,20 +11,12 @@ use Illuminate\Http\Request;
 
 class UserController extends APIBaseController
 {
-    private $courseContentService;
+    private $userRepository;
 
     public function __construct(UserRepositoryInterface $userRepositoryInterface) {
         $this->userRepository = $userRepositoryInterface;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,8 +26,11 @@ class UserController extends APIBaseController
      */
     public function store(StoreUserRequest $request)
     {
-        $this->userRepository->createUser($request->validated());
-        return $this->responseJson(200, 'User created successfully!');
+        $response = $this->userRepository->createUser($request->validated());
+        if($response){
+             return $this->responseJson(200, 'User created successfully!');
+        }
+        return $this->responseJson(422, 'Something went wrong!');
     }
 
     /**
@@ -47,7 +42,7 @@ class UserController extends APIBaseController
     public function show(Request $request)
     {
         $response =  $this->userRepository->getUserById($request->uuid);
-        if($response){
+        if(!$response->isempty()){
             return $this->responseJson(200, 'User fetched successfully!', $response);
         }
         return $this->responseJson(404, 'User not found!');
@@ -62,8 +57,11 @@ class UserController extends APIBaseController
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $this->userRepository->updateUser($request->uuid ,$request->validated());
-        return $this->responseJson(200, 'User updated successfully!');
+        $response = $this->userRepository->updateUser($request->uuid ,$request->validated());
+        if($response){
+             return $this->responseJson(200, 'User updated successfully!');
+        }
+        return $this->responseJson(422, 'Something went wrong!');
     }
 
     /**
