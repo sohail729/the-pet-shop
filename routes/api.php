@@ -60,6 +60,7 @@ Route::group(['prefix' => '/v1'], function () {
         Route::post('file/upload', [FileController::class, 'store']);
         
         // Product Management Routes
+        Route::get('products', [ProductController::class, 'index']);
         Route::get('product/{uuid}', [ProductController::class, 'show']);
         Route::post('product/create', [ProductController::class, 'store']);
         Route::put('product/{uuid}', [ProductController::class, 'update']);

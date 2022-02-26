@@ -21,7 +21,7 @@ class Category extends Model
     {
         return 'uuid';
     }
-
+    
     protected static function boot()
     {
         parent::boot();

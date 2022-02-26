@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Staudenmeir\EloquentJsonRelations\HasJsonRelationships as HasJsonRelationships;
 use Illuminate\Support\Str;
 
 class Product extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasJsonRelationships;
     
     /**
      * The attributes that are mass assignable.
@@ -23,10 +24,24 @@ class Product extends Model
         'metadata'
     ];
 
+    protected $casts = [
+        'metadata' => 'json',
+    ];
+
+
     public function getRouteKeyName()
     {
         return 'uuid';
     }
+
+    public function category() {
+        return $this->belongsTo(Category::class, 'category_uuid', 'uuid');
+    }
+
+    public function brand() {
+        return $this->belongsTo(Brand::class, 'metadata->brand', 'uuid');
+    }
+
 
     protected static function boot()
     {

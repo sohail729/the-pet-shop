@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "ramsey/uuid": "^4.2",
+        "staudenmeir/eloquent-json-relations": "^1.1",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {

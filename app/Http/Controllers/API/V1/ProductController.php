@@ -23,6 +23,21 @@ class ProductController extends APIBaseController
      * @param  \App\Http\Requests\StoreProductRequest  $request
      * @return \Illuminate\Http\Response
      */
+    public function index(Request $request)
+    {
+        $response = $this->productRepository->getProducts($request);
+        if(!$response->isempty()){
+             return $this->responseJson(200, 'Products fetched successfully!', $response);
+        }
+        return $this->responseJson(422, 'Something went wrong!');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreProductRequest  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(StoreProductRequest $request)
     {
         $response = $this->productRepository->createProduct($request->validated());
