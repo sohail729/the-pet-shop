@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 class Product extends Model
 {
     use SoftDeletes, HasJsonRelationships;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -28,6 +28,16 @@ class Product extends Model
         'metadata' => 'json',
     ];
 
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'id',
+        'updated_at',
+        'deleted_at',
+    ];
 
     public function getRouteKeyName()
     {

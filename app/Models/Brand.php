@@ -22,6 +22,17 @@ class Brand extends Model
         return 'uuid';
     }
 
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'id',
+        'updated_at',
+        'deleted_at',
+    ];
+
     protected static function boot()
     {
         parent::boot();
