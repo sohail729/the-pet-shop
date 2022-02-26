@@ -1,8 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\V1\BrandController;
-use App\Http\Controllers\API\V1\UserController;
-use App\Http\Controllers\API\V1\AuthController;
+use App\Http\Controllers\API\V1\FileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +44,10 @@ Route::group(['prefix' => '/v1'], function () {
         Route::put('brand/{uuid}', [BrandController::class, 'update']);
         Route::delete('brand/{uuid}', [BrandController::class, 'destroy']);
 
+        // File Management Routes
+        Route::get('file/{uuid}', [FileController::class, 'show']);
+        Route::post('file/upload', [FileController::class, 'store']);
+        
 
         
     // });
