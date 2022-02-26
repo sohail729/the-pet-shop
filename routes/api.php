@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\API\V1\AuthController;
+use App\Http\Controllers\API\V1\UserController;
 use App\Http\Controllers\API\V1\BrandController;
+use App\Http\Controllers\API\V1\CategoryController;
 use App\Http\Controllers\API\V1\FileController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +46,13 @@ Route::group(['prefix' => '/v1'], function () {
         Route::post('brand/create', [BrandController::class, 'store']);
         Route::put('brand/{uuid}', [BrandController::class, 'update']);
         Route::delete('brand/{uuid}', [BrandController::class, 'destroy']);
+
+        // Category Management Routes
+        Route::get('categories', [CategoryController::class, 'index']);
+        Route::post('category/create', [CategoryController::class, 'store']);
+        Route::put('category/{uuid}', [CategoryController::class, 'update']);
+        Route::delete('category/{uuid}', [CategoryController::class, 'destroy']);
+        Route::get('category/{uuid}', [CategoryController::class, 'show']);
 
         // File Management Routes
         Route::get('file/{uuid}', [FileController::class, 'show']);
