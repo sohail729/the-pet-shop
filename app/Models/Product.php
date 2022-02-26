@@ -6,16 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
-class Brand extends Model
+class Product extends Model
 {
     use SoftDeletes;
     
     /**
-     * The attributes that are not mass assignable.
+     * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = ['title'];
+    protected $fillable = [
+        'category_uuid',
+        'title',
+        'price',
+        'description',
+        'metadata'
+    ];
 
     public function getRouteKeyName()
     {
@@ -27,10 +33,6 @@ class Brand extends Model
         parent::boot();
         static::creating(function ($model) {
                 $model->uuid = Str::uuid()->toString();
-                $model->slug = Str::slug($model->title);
-        });
-        static::updating(function ($model) {
-                $model->slug = Str::slug($model->title);
         });
     }
 }

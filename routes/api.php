@@ -4,6 +4,7 @@ use App\Http\Controllers\API\V1\AuthController;
 use App\Http\Controllers\API\V1\UserController;
 use App\Http\Controllers\API\V1\BrandController;
 use App\Http\Controllers\API\V1\CategoryController;
+use App\Http\Controllers\API\V1\ProductController;
 use App\Http\Controllers\API\V1\FileController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,6 +59,12 @@ Route::group(['prefix' => '/v1'], function () {
         Route::get('file/{uuid}', [FileController::class, 'show']);
         Route::post('file/upload', [FileController::class, 'store']);
         
+        // Product Management Routes
+        Route::get('product/{uuid}', [ProductController::class, 'show']);
+        Route::post('product/create', [ProductController::class, 'store']);
+        Route::put('product/{uuid}', [ProductController::class, 'update']);
+        Route::delete('product/{uuid}', [ProductController::class, 'destroy']);
+
 
         
     // });
