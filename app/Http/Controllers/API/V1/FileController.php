@@ -34,7 +34,7 @@ class FileController extends APIBaseController
         $data['type'] = $file->getClientMimeType();
         $response = $this->fileRepository->createFile($data);
         if($response){
-             return $this->responseJson(200, 'File created successfully!');
+            return $this->responseJson(200, 'File created successfully!', $response->uuid);
         }
         return $this->responseJson(422, 'Something went wrong!');
     }
