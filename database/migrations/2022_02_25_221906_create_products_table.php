@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->float('price');
             $table->text('description');
-            $table->json('metadata');
+            $table->json('metadata')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

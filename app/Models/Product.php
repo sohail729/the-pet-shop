@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Staudenmeir\EloquentJsonRelations\HasJsonRelationships as HasJsonRelationships;
@@ -9,7 +10,7 @@ use Illuminate\Support\Str;
 
 class Product extends Model
 {
-    use SoftDeletes, HasJsonRelationships;
+    use SoftDeletes, HasFactory, HasJsonRelationships;
 
     /**
      * The attributes that are mass assignable.

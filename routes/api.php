@@ -29,7 +29,7 @@ Route::group(['prefix' => '/v1'], function () {
     // Auth Login Route
     Route::post('user/login', [AuthController::class, 'login']);
     
-    // Route::group(['middleware' => 'auth:api'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
         
         // Auth Logout & Password Reset
         Route::get('user/logout', [AuthController::class, 'logout']);
@@ -68,5 +68,11 @@ Route::group(['prefix' => '/v1'], function () {
 
 
         
-    // });
+    });
 });
+
+Route::any('{path}', function() {
+    return response()->json([
+        'message' => 'Route not found'
+    ], 404);
+})->where('path', '.*');

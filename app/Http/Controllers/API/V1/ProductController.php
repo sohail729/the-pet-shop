@@ -29,7 +29,7 @@ class ProductController extends APIBaseController
         if(!$response->isempty()){
              return $this->responseJson(200, 'Products fetched successfully!', $response);
         }
-        return $this->responseJson(422, 'Something went wrong!');
+        return $this->responseJson(422, 'Products not found!');
     }
 
     /**
